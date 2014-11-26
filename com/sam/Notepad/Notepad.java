@@ -1,14 +1,17 @@
+package com.sam.Notepad;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.filechooser.*;
-import javax.swing.filechooser.FileFilter;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.net.URL;
 
 import com.inet.jortho.FileUserDictionary;
 import com.inet.jortho.SpellChecker;
+
+import com.sam.FontChooser.*;
 
 public class Notepad extends JFrame implements ActionListener{
 	JMenu menu;
@@ -22,13 +25,13 @@ public class Notepad extends JFrame implements ActionListener{
     public Notepad() {
     	Container cPane;
     	
-    	// Set frame properties
     	setTitle     ("Notepad");
         setSize      (700,500);
         setResizable (true);
         setLocation  (250,200);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        
+        ImageIcon img = new ImageIcon("note.png");
+        setIconImage(img.getImage());
         fc = new FontChooser(this);
         
         
@@ -74,7 +77,21 @@ public class Notepad extends JFrame implements ActionListener{
         });
 
 
-        
+        area.getDocument().addDocumentListener(new DocumentListener() {
+ 			public void changedUpdate(DocumentEvent e) {
+    			changed();
+  			}
+  			public void removeUpdate(DocumentEvent e) {
+    			changed();
+  			}
+  			public void insertUpdate(DocumentEvent e) {
+    			changed();
+  			}
+
+  			private void changed(){
+    			setTitle("Notepad*");
+    		}
+		});
         
         
         
@@ -104,7 +121,8 @@ public class Notepad extends JFrame implements ActionListener{
 		
 		// Spellchecker
 		SpellChecker.setUserDictionaryProvider( new FileUserDictionary() );
-		SpellChecker.registerDictionaries( null, null );
+		//URI uri = new URI("/dict/")
+		SpellChecker.registerDictionaries( null, "en" );	
 		SpellChecker.register( area );
 		
 		fileOpen = "";
@@ -164,10 +182,7 @@ public class Notepad extends JFrame implements ActionListener{
     
     
     
-    public static void main(String[] args){
-    	Notepad pad = new Notepad();
-    	pad.setVisible(true);
-    }
+    
     
     private void createFileMenu() {
     	JMenuItem item;
@@ -291,6 +306,7 @@ public class Notepad extends JFrame implements ActionListener{
 				area.write(writer);
 	      		writer.close();
 	      		statusLabel.setText(fileOpen);
+	      		setTitle("Notepad");
 	      	}
 	      	catch(Exception e){
 	        	//JOptionPane.showMessageDialog(null,"File Not Saved","Notice",JOptionPane.INFORMATION_MESSAGE);
@@ -316,6 +332,7 @@ public class Notepad extends JFrame implements ActionListener{
       		writer.close();
       		statusLabel.setText(fileName);
       		fileOpen = fileName;
+      		setTitle("Notepad");
       	}
       	catch(Exception e){
         	//JOptionPane.showMessageDialog(null,"File Not Saved","Notice",JOptionPane.INFORMATION_MESSAGE);
@@ -344,6 +361,7 @@ public class Notepad extends JFrame implements ActionListener{
 	        area.setText(sb.toString());
 	        statusLabel.setText(fileName);
 	        fileOpen = fileName;
+	        setTitle("Notepad");
     	}
     	catch(Exception e){
     		//JOptionPane.showMessageDialog(null,"No File Opened","Notice",JOptionPane.INFORMATION_MESSAGE);
@@ -359,5 +377,9 @@ public class Notepad extends JFrame implements ActionListener{
     private void updateStatus(int linenumber, int columnnumber) {
         statusCaret.setText(" | "+ "Line: " + linenumber + ", Column: " + columnnumber);
     }
+    
+
+    
+    
     
 }

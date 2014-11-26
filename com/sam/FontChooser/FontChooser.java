@@ -3,6 +3,7 @@
 // color.  The color selection is provided by a JColorChooser pane.  This
 // dialog builds an AttributeSet suitable for use with JTextPane.
 //
+package com.sam.FontChooser;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.colorchooser.*;
@@ -110,10 +111,8 @@ public class FontChooser extends JDialog implements ActionListener {
                                    (String)fontName.getSelectedItem());
     }
     // Check the font size (no error checking yet)
-    if (StyleConstants.getFontSize(attributes) != 
-                                   Integer.parseInt(fontSize.getText())) {
-      StyleConstants.setFontSize(attributes, 
-                                 Integer.parseInt(fontSize.getText()));
+    if (StyleConstants.getFontSize(attributes) != Integer.parseInt(fontSize.getText())) {
+      StyleConstants.setFontSize(attributes,Integer.parseInt(fontSize.getText()));
     }
     // Check to see if the font should be bold
     if (StyleConstants.isBold(attributes) != fontBold.isSelected()) {
