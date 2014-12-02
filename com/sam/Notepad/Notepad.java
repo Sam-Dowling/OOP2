@@ -12,6 +12,7 @@ import com.inet.jortho.FileUserDictionary;
 import com.inet.jortho.SpellChecker;
 
 import com.sam.FontChooser.*;
+import com.sam.LineNumbers.TextLineNumber;
 
 public class Notepad extends JFrame implements ActionListener{
 	JMenu menu;
@@ -21,6 +22,9 @@ public class Notepad extends JFrame implements ActionListener{
 	JLabel statusCaret;
 	String fileOpen;
 	FontChooser fc;
+	JScrollPane sp;
+	TextLineNumber tln;
+	Boolean edited;
 
     public Notepad() {
     	Container cPane;
@@ -29,7 +33,12 @@ public class Notepad extends JFrame implements ActionListener{
         setSize      (700,500);
         setResizable (true);
         setLocation  (250,200);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+   			public void windowClosing(WindowEvent evt) {
+     			quit();
+   			}
+  		});
         ImageIcon img = new ImageIcon("note.png");
         setIconImage(img.getImage());
         fc = new FontChooser(this);
@@ -90,17 +99,24 @@ public class Notepad extends JFrame implements ActionListener{
 
   			private void changed(){
     			setTitle("Notepad*");
+    			edited = true;
     		}
 		});
         
         
         
-        JScrollPane sp = new JScrollPane(area);
+        sp = new JScrollPane(area);
         
         JPanel content = new JPanel();
         
         content.setLayout(new BorderLayout());
         content.add(sp);
+        
+        //line numbers
+        tln = new TextLineNumber(area);
+        tln.setBorderGap(0);
+        tln.setCurrentLineForeground(Color.BLUE);
+        tln.setMinimumDisplayDigits(3);
         
         // Status Bar
         statusBar = new JPanel();
@@ -109,11 +125,10 @@ public class Notepad extends JFrame implements ActionListener{
         statusBar.setLayout(new BoxLayout(statusBar,BoxLayout.X_AXIS));
         
 		statusLabel = new JLabel("New File");
-		//statusLabel.setAlignmentX( LEFT_ALIGNMENT );
 		statusBar.add(statusLabel);
 		
+		
 		statusCaret = new JLabel("");
-		//statusCaret.setAlignmentX( RIGHT_ALIGNMENT );
 		statusBar.add(statusCaret);
 		
 		statusBar.setVisible(true);
@@ -121,11 +136,11 @@ public class Notepad extends JFrame implements ActionListener{
 		
 		// Spellchecker
 		SpellChecker.setUserDictionaryProvider( new FileUserDictionary() );
-		//URI uri = new URI("/dict/")
 		SpellChecker.registerDictionaries( null, "en" );	
 		SpellChecker.register( area );
 		
 		fileOpen = "";
+		edited = false;
     	setContentPane(content);
     	
     	
@@ -276,6 +291,7 @@ public class Notepad extends JFrame implements ActionListener{
     private void createViewMenu() {
     	menu = new JMenu("View");
     	
+    	
     	JCheckBoxMenuItem status = new JCheckBoxMenuItem("Show StatusBar", true);
       	status.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
@@ -287,12 +303,29 @@ public class Notepad extends JFrame implements ActionListener{
         	}
       	});
         menu.add( status );
+        
+        JCheckBoxMenuItem line = new JCheckBoxMenuItem("Show Line Numbers", false);
+      	line.addItemListener(new ItemListener() {
+        	public void itemStateChanged(ItemEvent e) {
+            	if(line.getState()){
+            		sp.setRowHeaderView( tln );
+            	}else{
+            		sp.setRowHeaderView( null );
+            	}
+        	}
+      	});
+        menu.add( line );
     }
     
     
     
     private void quit(){
-    	System.exit(0);
+    	if(edited){
+    		int i = JOptionPane.showConfirmDialog(null,"File Has Not Been Saved.\nWould You Like To Save It Before Closing?","Notice", JOptionPane.YES_NO_OPTION);
+    		if(i==JOptionPane.YES_OPTION)
+    			save();
+    	}
+    	System.exit(0);	
     }
     
     private void save(){
@@ -375,7 +408,7 @@ public class Notepad extends JFrame implements ActionListener{
     }
     
     private void updateStatus(int linenumber, int columnnumber) {
-        statusCaret.setText(" | "+ "Line: " + linenumber + ", Column: " + columnnumber);
+        statusCaret.setText(" - " + "Line: " + linenumber + ", Column: " + columnnumber);
     }
     
 
