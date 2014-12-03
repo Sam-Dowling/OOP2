@@ -10,7 +10,7 @@ import java.io.*;
 import com.inet.jortho.FileUserDictionary;
 import com.inet.jortho.SpellChecker;
 
-import com.sam.FontChooser.*;
+import com.sam.FontChooser.FontChooser;
 import com.sam.LineNumbers.TextLineNumber;
 
 public class Notepad extends JFrame implements ActionListener{

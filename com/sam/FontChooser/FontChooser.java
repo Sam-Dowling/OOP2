@@ -1,3 +1,5 @@
+package com.sam.FontChooser;
+
 // FontChooser.java
 // A font chooser that allows users to pick a font by name, size, style, and
 // color.  The color selection is provided by a JColorChooser pane.  This
