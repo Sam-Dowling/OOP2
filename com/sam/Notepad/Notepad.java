@@ -6,7 +6,6 @@ import javax.swing.filechooser.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.net.URL;
 
 import com.inet.jortho.FileUserDictionary;
 import com.inet.jortho.SpellChecker;
@@ -24,7 +23,7 @@ public class Notepad extends JFrame implements ActionListener{
 	FontChooser fc;
 	JScrollPane sp;
 	TextLineNumber tln;
-	Boolean edited;
+	Boolean edited; 
 
     public Notepad() {
     	Container cPane;
@@ -145,9 +144,7 @@ public class Notepad extends JFrame implements ActionListener{
     	
     	
     }
-    
-    
-    
+
     public void actionPerformed(ActionEvent event) {
         String  menuName;
         menuName = event.getActionCommand();
@@ -194,10 +191,6 @@ public class Notepad extends JFrame implements ActionListener{
         		break;
         }
     }
-    
-    
-    
-    
     
     private void createFileMenu() {
     	JMenuItem item;
@@ -317,15 +310,13 @@ public class Notepad extends JFrame implements ActionListener{
         menu.add( line );
     }
     
-    
-    
     private void quit(){
     	if(edited){
     		int i = JOptionPane.showConfirmDialog(null,"File Has Not Been Saved.\nWould You Like To Save It Before Closing?","Notice", JOptionPane.YES_NO_OPTION);
     		if(i==JOptionPane.YES_OPTION)
     			save();
     	}
-    	System.exit(0);	
+    	System.exit(0);
     }
     
     private void save(){
@@ -342,7 +333,7 @@ public class Notepad extends JFrame implements ActionListener{
 	      		setTitle("Notepad");
 	      	}
 	      	catch(Exception e){
-	        	//JOptionPane.showMessageDialog(null,"File Not Saved","Notice",JOptionPane.INFORMATION_MESSAGE);
+	        	JOptionPane.showMessageDialog(null,"Proble, Saving File","Notice",JOptionPane.INFORMATION_MESSAGE);
 	      	}
     	}
 	    	
@@ -368,7 +359,7 @@ public class Notepad extends JFrame implements ActionListener{
       		setTitle("Notepad");
       	}
       	catch(Exception e){
-        	//JOptionPane.showMessageDialog(null,"File Not Saved","Notice",JOptionPane.INFORMATION_MESSAGE);
+        	JOptionPane.showMessageDialog(null,"Problem Saving File","Notice",JOptionPane.INFORMATION_MESSAGE);
       	}
     }
     
@@ -397,7 +388,7 @@ public class Notepad extends JFrame implements ActionListener{
 	        setTitle("Notepad");
     	}
     	catch(Exception e){
-    		//JOptionPane.showMessageDialog(null,"No File Opened","Notice",JOptionPane.INFORMATION_MESSAGE);
+    		JOptionPane.showMessageDialog(null,"Problem Opening File","Notice",JOptionPane.INFORMATION_MESSAGE);
     	}
     }
     
@@ -409,10 +400,5 @@ public class Notepad extends JFrame implements ActionListener{
     
     private void updateStatus(int linenumber, int columnnumber) {
         statusCaret.setText(" - " + "Line: " + linenumber + ", Column: " + columnnumber);
-    }
-    
-
-    
-    
-    
+    }  
 }
