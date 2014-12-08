@@ -153,11 +153,11 @@ public class FontChooser extends JDialog implements ActionListener{
     // Manually force the label to repaint
     previewLabel.repaint();
   }
-  public Font getNewFont() { return newFont; }
-  public Color getNewColor() { return newColor; }
-  public AttributeSet getAttributes() { return attributes; }
+  public Font getNewFont() {return newFont;}
+  public Color getNewColor() {return newColor;}
+  public AttributeSet getAttributes() {return attributes;}
 
-  public void closeAndSave() {
+  public void closeAndSave(){
     // Save font & color information
     newFont = previewLabel.getFont();
     newColor = previewLabel.getForeground();
@@ -168,8 +168,6 @@ public class FontChooser extends JDialog implements ActionListener{
 
   public void closeAndCancel() {
     // Erase any font information and then close the window
-    //newFont = null;
-    //newColor = null;
     setVisible(false);
   }
 }
