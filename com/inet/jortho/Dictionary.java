@@ -94,7 +94,6 @@ final class Dictionary extends DictionaryBase{
         FileInputStream fos = new FileInputStream(filename);
         load(fos);
     }
-
     
     /**
      * Load the directory from a compressed stream.
