@@ -406,6 +406,8 @@ public class Notepad extends JFrame implements ActionListener{
     private void open(){
     	String fileName = null;
     	JFileChooser choose = new JFileChooser();
+    	choose.addChoosableFileFilter(new FileNameExtensionFilter("Text Document (.txt)", "txt"));
+    	
 		int val=choose.showOpenDialog(this);
 		if (val == JFileChooser.APPROVE_OPTION)
 			fileName = choose.getSelectedFile().getAbsolutePath();
