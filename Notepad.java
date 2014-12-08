@@ -12,7 +12,7 @@ import com.inet.jortho.SpellChecker;
 import com.sam.FontChooser.FontChooser;
 import com.sam.LineNumbers.TextLineNumber;
 
-
+ 
 /**
  * @author Sam Dowling | T00171832
  * @version 1.0
@@ -50,7 +50,7 @@ public class Notepad extends JFrame implements ActionListener{
 	/** edited flag */
 	boolean edited;
 
-    public Notepad() {
+    public Notepad(){
     	Container cPane;
     	
     	setTitle     ("Notepad");
@@ -60,8 +60,8 @@ public class Notepad extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         
         /** custom close dialog */
-        addWindowListener(new WindowAdapter() {
-   			public void windowClosing(WindowEvent evt) {
+        addWindowListener(new WindowAdapter(){
+   			public void windowClosing(WindowEvent evt){
      			quit();
    			}
   		});
@@ -97,7 +97,7 @@ public class Notepad extends JFrame implements ActionListener{
         
         /** anonymous caret listener method */
         area.addCaretListener(new CaretListener(){
-	        public void caretUpdate(CaretEvent e) {
+	        public void caretUpdate(CaretEvent e){
 			    JTextArea editArea = (JTextArea)e.getSource();
 			
 			    int linenum = 1;
