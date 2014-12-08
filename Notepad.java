@@ -291,7 +291,7 @@ public class Notepad extends JFrame implements ActionListener{
     }
     
     /** create format menu layout in format menubar tab */
-    private void createFormatMenu() {
+    private void createFormatMenu(){
     	menu = new JMenu("Format");
     	JMenuItem item;
     	
@@ -317,7 +317,7 @@ public class Notepad extends JFrame implements ActionListener{
     }
     
     /** create view menu layout for view menubar */
-    private void createViewMenu() {
+    private void createViewMenu(){
     	menu = new JMenu("View");
     	
     	/** toggle statusbar visibility anonymous method  */
@@ -331,16 +331,16 @@ public class Notepad extends JFrame implements ActionListener{
             	}
         	}
       	});
-        menu.add( status );
+        menu.add(status);
         
         /** toggle line numbers visibility anonymous method */
         JCheckBoxMenuItem line = new JCheckBoxMenuItem("Show Line Numbers", false);
       	line.addItemListener(new ItemListener() {
         	public void itemStateChanged(ItemEvent e) {
             	if(line.getState()){
-            		sp.setRowHeaderView( tln );
+            		sp.setRowHeaderView(tln);
             	}else{
-            		sp.setRowHeaderView( null );
+            		sp.setRowHeaderView(null);
             	}
         	}
       	});
@@ -374,8 +374,7 @@ public class Notepad extends JFrame implements ActionListener{
 	      	catch(Exception e){
 	        	JOptionPane.showMessageDialog(null,"Proble, Saving File","Notice",JOptionPane.INFORMATION_MESSAGE);
 	      	}
-    	}
-	    	
+    	}	
     }
     
     /** saveas dialog method */
