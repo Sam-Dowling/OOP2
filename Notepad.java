@@ -441,6 +441,6 @@ public class Notepad extends JFrame implements ActionListener{
     
     /** updates the caret label on caret movement */
     private void updateStatus(int linenumber, int columnnumber) {
-        statusCaret.setText(" - " + "Line: " + linenumber + ", Column: " + columnnumber);
+        statusCaret.setText(" : " + "Line: " + linenumber + ", Column: " + columnnumber);
     }  
 }
