@@ -202,6 +202,7 @@ public class TextLineNumber extends JPanel
 	 *
 	 *  @param minimumDisplayDigits  the number digits used in the preferred
 	 *                               width calculation
+	 *
 	 */
 	public void setMinimumDisplayDigits(int minimumDisplayDigits)
 	{
