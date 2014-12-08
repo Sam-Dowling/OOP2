@@ -168,7 +168,7 @@ public class Notepad extends JFrame implements ActionListener{
 		SpellChecker.registerDictionaries( null, "en" );	
 		SpellChecker.register( area );
 		
-		fileOpen = "";
+		fileOpen="";
 		edited = false;
     	setContentPane(content);
     	
@@ -298,8 +298,8 @@ public class Notepad extends JFrame implements ActionListener{
     	/** create anonymous word wrap method */
     	JCheckBoxMenuItem wrap = 
         	new JCheckBoxMenuItem("Word Wrap", false);
-      	wrap.addItemListener(new ItemListener() {
-        	public void itemStateChanged(ItemEvent e) {
+      	wrap.addItemListener(new ItemListener(){
+        	public void itemStateChanged(ItemEvent e){
             	if(wrap.getState()){
             		area.setLineWrap(true);
     				area.setWrapStyleWord(true);
@@ -309,7 +309,7 @@ public class Notepad extends JFrame implements ActionListener{
             	}
         	}
       	});
-        menu.add( wrap );
+        menu.add(wrap);
         
         item = new JMenuItem("Font...");
         item.addActionListener( this );
@@ -317,14 +317,14 @@ public class Notepad extends JFrame implements ActionListener{
     }
     
     /** create view menu layout for view menubar */
-    private void createViewMenu(){
+    private void createViewMenu() {
     	menu = new JMenu("View");
     	
     	/** toggle statusbar visibility anonymous method  */
     	JCheckBoxMenuItem status = new JCheckBoxMenuItem("Show StatusBar", true);
       	status.addItemListener(new ItemListener() {
-        	public void itemStateChanged(ItemEvent e) {
-            	if(status.getState()){
+        	public void itemStateChanged(ItemEvent e){
+            	if(status.getState()) {
             		statusBar.setVisible(true);
             	}else{
             		statusBar.setVisible(false);
@@ -381,7 +381,9 @@ public class Notepad extends JFrame implements ActionListener{
     private void saveAs(){
     	String fileName = null;
     	JFileChooser choose = new JFileChooser();
-
+    	choose.addChoosableFileFilter(new FileNameExtensionFilter("Text Document (.txt)", "txt"));
+    	choose.addChoosableFileFilter(new FileNameExtensionFilter("Java Source File (.java)", "java"));
+    	choose.addChoosableFileFilter(new FileNameExtensionFilter("SQL Source File (.sql)", "sql"));
 		int val=choose.showSaveDialog(this);
 		if (val == JFileChooser.APPROVE_OPTION)
 			fileName = choose.getSelectedFile().getAbsolutePath();
