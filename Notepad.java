@@ -17,6 +17,7 @@ import com.sam.LineNumbers.TextLineNumber;
  * @author Sam Dowling | T00171832
  * @version 1.0
  * @since 2014-12-08
+ *
  */
 
 public class Notepad extends JFrame implements ActionListener{
