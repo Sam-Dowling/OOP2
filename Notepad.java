@@ -1,3 +1,4 @@
+// Notepad.java
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.filechooser.*;
@@ -12,7 +13,7 @@ import com.inet.jortho.SpellChecker;
 import com.sam.FontChooser.FontChooser;
 import com.sam.LineNumbers.TextLineNumber;
 
- 
+
 /**
  * @author Sam Dowling | T00171832
  * @version 1.0
