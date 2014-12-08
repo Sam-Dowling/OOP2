@@ -4,7 +4,12 @@ package com.sam.FontChooser;
 // A font chooser that allows users to pick a font by name, size, style, and
 // color.  The color selection is provided by a JColorChooser pane.  This
 // dialog builds an AttributeSet suitable for use with JTextPane.
-// examples.oreilly.com/jswing2/code/ch12/FontChooser.java
+
+/**
+ * Date: 12-Aug-2009
+ * URL: examples.oreilly.com/jswing2/code/ch12/FontChooser.java
+ */
+ 
 
 import javax.swing.*;
 import javax.swing.event.*;
