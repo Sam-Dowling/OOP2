@@ -1,6 +1,6 @@
 package com.sam.FontChooser;
 
-// FontChooser.java
+// FontChooser.java 
 // A font chooser that allows users to pick a font by name, size, style, and
 // color.  The color selection is provided by a JColorChooser pane.  This
 // dialog builds an AttributeSet suitable for use with JTextPane.
@@ -19,7 +19,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class FontChooser extends JDialog implements ActionListener {
+public class FontChooser extends JDialog implements ActionListener{
 
   JColorChooser colorChooser;
   JComboBox fontName;
@@ -36,8 +36,8 @@ public class FontChooser extends JDialog implements ActionListener {
     attributes = new SimpleAttributeSet();
 
     // Make sure that any way the user cancels the window does the right thing
-    addWindowListener(new WindowAdapter() {
-      public void windowClosing(WindowEvent e) {
+    addWindowListener(new WindowAdapter(){
+      public void windowClosing(WindowEvent e){
         closeAndCancel();
       }
     });
