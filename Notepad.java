@@ -106,26 +106,25 @@ public class Notepad extends JFrame implements ActionListener{
 			    try {
 			        int caretpos = editArea.getCaretPosition();
 			        linenum = editArea.getLineOfOffset(caretpos);
-			        columnnum = caretpos - editArea.getLineStartOffset(linenum) + 1;
+			        columnnum = caretpos-editArea.getLineStartOffset(linenum)+1;
 			        linenum += 1;
 			    }
 			    catch(Exception ex) { }
-			    updateStatus(linenum, columnnum);
+			    updateStatus(linenum,columnnum);
 			}	
         });
 
 		/** anonymous document changed listener method */
-        area.getDocument().addDocumentListener(new DocumentListener() {
- 			public void changedUpdate(DocumentEvent e) {
+        area.getDocument().addDocumentListener(new DocumentListener(){
+ 			public void changedUpdate(DocumentEvent e){
     			changed();
   			}
-  			public void removeUpdate(DocumentEvent e) {
+  			public void removeUpdate(DocumentEvent e){
     			changed();
   			}
-  			public void insertUpdate(DocumentEvent e) {
+  			public void insertUpdate(DocumentEvent e){
     			changed();
   			}
-
   			private void changed(){
     			setTitle("Notepad*");
     			edited = true;
@@ -164,9 +163,9 @@ public class Notepad extends JFrame implements ActionListener{
 		updateStatus(1,1);
 		
 		/** instanciate spell checker */
-		SpellChecker.setUserDictionaryProvider( new FileUserDictionary() );
-		SpellChecker.registerDictionaries( null, "en" );	
-		SpellChecker.register( area );
+		SpellChecker.setUserDictionaryProvider(new FileUserDictionary());
+		SpellChecker.registerDictionaries(null,"en");	
+		SpellChecker.register(area);
 		
 		fileOpen="";
 		edited = false;
