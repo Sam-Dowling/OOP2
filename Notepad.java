@@ -374,7 +374,6 @@ public class Notepad extends JFrame implements ActionListener{
 	      		setTitle("Notepad");
 	      	}
 	      	catch(Exception e){
-	        	JOptionPane.showMessageDialog(null,"Proble, Saving File","Notice",JOptionPane.INFORMATION_MESSAGE);
 	      	}
     	}	
     }
@@ -383,12 +382,15 @@ public class Notepad extends JFrame implements ActionListener{
     private void saveAs(){
     	String fileName = null;
     	JFileChooser choose = new JFileChooser();
-    	choose.addChoosableFileFilter(new FileNameExtensionFilter("Text Document (.txt)", "txt"));
-    	choose.addChoosableFileFilter(new FileNameExtensionFilter("Java Source File (.java)", "java"));
-    	choose.addChoosableFileFilter(new FileNameExtensionFilter("SQL Source File (.sql)", "sql"));
+    	javax.swing.filechooser.FileFilter txt = new FileNameExtensionFilter("Text Document (.txt)", "txt");
+    	choose.addChoosableFileFilter(txt);
+		choose.setFileFilter(txt);
 		int val=choose.showSaveDialog(this);
-		if (val == JFileChooser.APPROVE_OPTION)
+		if (val == JFileChooser.APPROVE_OPTION){
 			fileName = choose.getSelectedFile().getAbsolutePath();
+			if (!fileName.endsWith(".txt"))
+		    	fileName += ".txt";
+		}
     	try{
 			File file = new File(fileName);
 			file.createNewFile();
@@ -400,7 +402,6 @@ public class Notepad extends JFrame implements ActionListener{
       		setTitle("Notepad");
       	}
       	catch(Exception e){
-        	JOptionPane.showMessageDialog(null,"Problem Saving File","Notice",JOptionPane.INFORMATION_MESSAGE);
       	}
     }
     
@@ -408,9 +409,9 @@ public class Notepad extends JFrame implements ActionListener{
     private void open(){
     	String fileName = null;
     	JFileChooser choose = new JFileChooser();
-    	choose.addChoosableFileFilter(new FileNameExtensionFilter("Text Document (.txt)", "txt"));
-    	choose.addChoosableFileFilter(new FileNameExtensionFilter("Java Source File (.java)", "java"));
-    	choose.addChoosableFileFilter(new FileNameExtensionFilter("SQL Source File (.sql)", "sql"));
+    	javax.swing.filechooser.FileFilter txt = new FileNameExtensionFilter("Text Document (.txt)", "txt");
+    	choose.addChoosableFileFilter(txt);
+		choose.setFileFilter(txt);
 		int val=choose.showOpenDialog(this);
 		if (val == JFileChooser.APPROVE_OPTION)
 			fileName = choose.getSelectedFile().getAbsolutePath();
@@ -430,7 +431,6 @@ public class Notepad extends JFrame implements ActionListener{
 	        setTitle("Notepad");
     	}
     	catch(Exception e){
-    		JOptionPane.showMessageDialog(null,"Problem Opening File","Notice",JOptionPane.INFORMATION_MESSAGE);
     	}
     }
     
